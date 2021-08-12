@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser-arcade-physics.min.js"></script>
 </head>
 <body>
 
@@ -10,6 +10,10 @@ var config = {
     type: Phaser.AUTO,
     width: 400,
     height: 300,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     scene: {
         preload: preload,
         create: create,
@@ -29,7 +33,7 @@ function preload ()
 function create ()
 {
 
-    this.add.image(400, 500, 'bin').setScale(0.4);
+    this.add.image(10, 10, 'bin').setScale(0.4);
     obj=this.add.image(400, 300, 'paper').setScale(0.1).setInteractive().on("pointerdown",test);
     cursors = this.input.keyboard.createCursorKeys();
 }
