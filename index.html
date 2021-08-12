@@ -10,6 +10,7 @@ var config = {
     type: Phaser.AUTO,
     width: 1600,
     height: 900,
+    backgroundColor: '#0AC618',
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
@@ -36,7 +37,7 @@ function create ()
 {
 
     this.add.image((this.cameras.main.width / 2), (this.cameras.main.height / 2)+300, 'bin').setScale(0.5);
-    obj=this.add.image(400, 300, 'paper').setScale(0.4).setInteractive().on("pointerdown",test);
+    obj=this.add.image((this.cameras.main.width / 2), (this.cameras.main.height / 2), 'paper').setScale(0.2).setInteractive().on("pointerdown",test);
     cursors = this.input.keyboard.createCursorKeys();
 }
 function test(){
