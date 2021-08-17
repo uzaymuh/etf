@@ -24,6 +24,8 @@ var config = {
 
 var game = new Phaser.Game(config);
 var obj;
+var boy;
+var girl;
 
 
 
@@ -31,17 +33,40 @@ function preload ()
 {
     this.load.image('bin', 'bin.png');
     this.load.image('paper', 'paper.png');
+    this.load.image('boy', 'boy.png');
+    this.load.image('girl', 'girl.png');
 }
 
 function create ()
 {
 
     this.add.image((this.cameras.main.width / 2), (this.cameras.main.height / 2)+300, 'bin').setScale(0.5);
-    obj=this.add.image((this.cameras.main.width / 2), (this.cameras.main.height / 2), 'paper').setScale(0.2).setInteractive().on("pointerdown",test);
+    boy=this.add.image((this.cameras.main.width / 2), (this.cameras.main.height / 2)+300, 'boy');
+    girl=this.add.image((this.cameras.main.width / 2), (this.cameras.main.height / 2)+300, 'girl');
+    obj=this.add.image((this.cameras.main.width / 2), (this.cameras.main.height / 2), 'paper');
+    var r1 = this.add.circle(200, 200, 20, 0x6666ff);
+    obj.setScale(0.2).setInteractive();
+    boy.setScale(0.8).setInteractive();
+    girl.setScale(0.8).setInteractive();
+
+    this.input.setDraggable(obj);
+    this.input.setDraggable(boy);
+    this.input.setDraggable(girl);
     cursors = this.input.keyboard.createCursorKeys();
+    this.input.on("drag", function(pointer,gameObject,dragX,dragY){
+        gameObject.x=dragX;
+        gameObject.y=dragY;
+    });
+    this.input.on("dragend", function(pointer,gameObject){
+        if (Math.abs(gameObject.x-200)<100 && Math.abs(gameObject.y-200)<100 ) {
+
+        gameObject.x=200;
+        gameObject.y=200;
+        }
+    });
 }
 function test(){
-    obj.destroy();
+    //obj.destroy();
 }
 
 function update ()
